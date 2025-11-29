@@ -2,6 +2,8 @@
 
 > Named after Andrey Kolmogorov — the Russian mathematician who laid the axiomatic foundations of probability theory and made seminal contributions to information theory and algorithmic complexity.
 
+![kolmogorov-1](https://github.com/user-attachments/assets/9437bf2f-e4eb-46c0-9efc-21b3e28af0b0)
+
 **Build a reinforcement learning system that enables an LLM to learn continuously from real-world human interactions using preference-based feedback mechanisms.**
 
 ## Overview
