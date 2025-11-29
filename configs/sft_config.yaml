@@ -1,0 +1,21 @@
+# SFT (Supervised Fine-Tuning) Configuration
+# Extends base_config.yaml
+
+_extends: base_config.yaml
+
+sft:
+  max_length: 2048
+  packing: false  # Pack multiple sequences into one for efficiency
+  loss_type: "standard"  # standard, dft (dynamic fine-tuning)
+
+training:
+  output_dir: "./checkpoints/sft"
+  num_train_epochs: 3
+  per_device_train_batch_size: 4
+  gradient_accumulation_steps: 4
+  learning_rate: 2.0e-5
+
+data:
+  dataset_name: null  # Will be provided at runtime
+  # Expected format: {"text": "..."} or {"messages": [{"role": "user", ...}]}
+

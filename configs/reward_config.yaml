@@ -1,0 +1,26 @@
+# Reward Model Training Configuration
+# Extends base_config.yaml
+
+_extends: base_config.yaml
+
+reward:
+  max_length: 1024
+  # Model will add a classification head for reward scoring
+
+training:
+  output_dir: "./checkpoints/reward"
+  num_train_epochs: 1
+  per_device_train_batch_size: 4
+  gradient_accumulation_steps: 4
+  learning_rate: 1.0e-5
+
+data:
+  dataset_name: null  # Will be provided at runtime
+  # Expected format: {"chosen": "...", "rejected": "..."}
+  # Or with prompt: {"prompt": "...", "chosen": "...", "rejected": "..."}
+
+lora:
+  enabled: true
+  modules_to_save:
+    - "score"  # Important: include score head for non-seq-classification models
+
