@@ -1,0 +1,90 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kolmogorov"
+version = "0.1.0"
+description = "RLHF implementation for LLM preference learning using DPO"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+authors = [
+    {name = "Kolmogorov Team"}
+]
+keywords = ["rlhf", "dpo", "llm", "reinforcement-learning", "transformers"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "torch>=2.1.0",
+    "transformers>=4.40.0",
+    "trl>=0.8.0",
+    "peft>=0.10.0",
+    "datasets>=2.18.0",
+    "accelerate>=0.27.0",
+    "bitsandbytes>=0.43.0",
+    "safetensors>=0.4.0",
+    "sentencepiece>=0.2.0",
+    "protobuf>=4.25.0",
+    "pyyaml>=6.0",
+    "tqdm>=4.66.0",
+    "wandb>=0.16.0",
+    "scipy>=1.12.0",
+    "numpy>=1.26.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=4.1.0",
+    "black>=24.0.0",
+    "ruff>=0.3.0",
+    "mypy>=1.8.0",
+    "pre-commit>=3.6.0",
+]
+api = [
+    "fastapi>=0.110.0",
+    "uvicorn>=0.28.0",
+    "pydantic>=2.6.0",
+]
+
+[project.scripts]
+kolmogorov-train = "kolmogorov.cli:train"
+kolmogorov-collect = "kolmogorov.cli:collect"
+kolmogorov-evaluate = "kolmogorov.cli:evaluate"
+
+[project.urls]
+Homepage = "https://github.com/virjilakrum/kolmogorov"
+Repository = "https://github.com/virjilakrum/kolmogorov"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.black]
+line-length = 100
+target-version = ["py310", "py311"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+select = ["E", "F", "I", "N", "W", "UP"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v --cov=kolmogorov --cov-report=term-missing"
+
